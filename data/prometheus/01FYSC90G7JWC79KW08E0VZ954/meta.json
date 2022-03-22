@@ -1,0 +1,17 @@
+{
+	"ulid": "01FYSC90G7JWC79KW08E0VZ954",
+	"minTime": 1647960895053,
+	"maxTime": 1647964800000,
+	"stats": {
+		"numSamples": 28699,
+		"numSeries": 471,
+		"numChunks": 471
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01FYSC90G7JWC79KW08E0VZ954"
+		]
+	},
+	"version": 1
+}

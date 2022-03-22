@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Entity\Commands\DeleteEntity\" />
+    <Folder Include="Entity\Commands\UpdateEntity\" />
+    <Folder Include="Entity\Consumers\" />
+    <Folder Include="MongoEntity\Commands\DeleteMongoEntity\" />
+    <Folder Include="MongoEntity\Commands\UpdateMongoEntity\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BL.Sample.Domain\BL.Sample.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
