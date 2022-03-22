@@ -5,15 +5,15 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace BL.Test.ApplicationServices.Consumers
+namespace BL.Sample.ApplicationServices.Entity.Consumers
 {
-    public class TestConsumer : IConsumer<SmsNotificationSentEvent>
+    public class EntityConsumer : IConsumer<SmsNotificationSentEvent>
     {
-        private readonly ILogger<TestConsumer> _logger;
+        private readonly ILogger<EntityConsumer> _logger;
 
-        public TestConsumer(IServiceProvider serviceProvider)
+        public EntityConsumer(IServiceProvider serviceProvider)
         {
-            _logger = serviceProvider.GetService<ILogger<TestConsumer>>();
+            _logger = serviceProvider.GetService<ILogger<EntityConsumer>>();
         }
 
         public Task Consume(ConsumeContext<SmsNotificationSentEvent> context)

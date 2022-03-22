@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Entity\Commands\DeleteEntity\" />
     <Folder Include="Entity\Commands\UpdateEntity\" />
-    <Folder Include="Entity\Consumers\" />
     <Folder Include="MongoEntity\Commands\DeleteMongoEntity\" />
     <Folder Include="MongoEntity\Commands\UpdateMongoEntity\" />
   </ItemGroup>

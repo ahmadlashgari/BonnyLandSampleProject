@@ -7,7 +7,6 @@ using BL.Sample.ApplicationServices.ElasticEntity.Queries.GetElasticEntities;
 using BL.Sample.ApplicationServices.ElasticEntity.Queries.GetElasticEntityById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Nest;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

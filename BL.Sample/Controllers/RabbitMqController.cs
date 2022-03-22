@@ -1,21 +1,19 @@
 ﻿using BL.Framework.Events;
 using MassTransit;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
-namespace BL.Test1.Controllers
+namespace BL.Sample.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
-    public class TestController : ControllerBase
+    public class RabbitMqController : ControllerBase
     {
         private readonly IPublishEndpoint _publishEndpoint;
 
-        public TestController(IPublishEndpoint publishEndpoint)
+        public RabbitMqController(IPublishEndpoint publishEndpoint)
         {
-            _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet("[action]")]
