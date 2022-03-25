@@ -1,17 +1,70 @@
 version: '3.4'
 
 services:
+  nginx-proxy:
+    container_name: nginx
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '/var/run/docker.sock:/tmp/docker.sock:ro'
+      - './Files/Nginx/vhost.d:/etc/nginx/vhost.d'
+      - './Files/Nginx/Certs:/etc/nginx/certs:ro'
+    networks:
+      bl.network:
+        aliases:
+          - sample.bonnyland.local
+    restart: always
+
   bl.sample:
     environment:
+        - VIRTUAL_HOST=sample.bonnyland.local
+        - VIRTUAL_PROTO=https
+        - VIRTUAL_PORT=443
         - ASPNETCORE_ENVIRONMENT=Development
         - ASPNETCORE_URLS=https://+:443;http://+:80
-        - ASPNETCORE_HTTPS_PORT=400
+        - ASPNETCORE_HTTPS_PORT=443
         - IDENTITY-AUTHORITY=https://bl.identity
         - ASPNETCORE_Kestrel__Certificates__Default__Password=Infusion@9999
         - ASPNETCORE_Kestrel__Certificates__Default__Path=/etc/ssl/certs/bonnyland.pfx
-    ports:
-        - 800:80
-        - 400:443
+        - ConnectionStrings__DefaultConnection=Host=postgres;Database=bl_sample;Username=postgres;Password=Infusion@9999
+        - ConnectionStrings__IdentityServer=Host=postgres;Database=bl_identity;Username=postgres;Password=Infusion@9999
+        - MassTransit__RabbitMQ__Host=rabbitmq
+        - MassTransit__RabbitMQ__Username=guest
+        - MassTransit__RabbitMQ__Password=guest
+        - MassTransit__RabbitMQ__PublisherConfirmation=true
+        - MassTransit__RabbitMQ__Endpoints__0__QueueName=sample_queue
+        - MassTransit__RabbitMQ__Endpoints__0__UseInMemoryOutbox=false
+        - MassTransit__RabbitMQ__Endpoints__0__ConcurrentMessageDelivery=false
+        - MassTransit__RabbitMQ__Endpoints__0__UseMessageRetry=true
+        - MassTransit__RabbitMQ__Endpoints__0__MessageRetryImmediate=3
+        - MassTransit__RabbitMQ__Endpoints__0__Consumers__0=EntityConsumer
+        - Redis__Host=redis
+        - Redis__Port=6379
+        - Redis__InstanceName=0
+        - MongoDB__Host=mongo
+        - MongoDB__Port=27017
+        - MongoDB__Credential__DatabaseName=admin
+        - MongoDB__Credential__Username=root
+        - MongoDB__Credential__Password=Infusion9999
+        - MongoDB__UseTls=false
+        - MongoDB__DirectConnection=true
+        - MongoDB__BookDatabase__DatabaseName=bookStore
+        - MongoDB__BookDatabase__CollectionName=books
+        - ElasticSearch__Url=http://elasticsearch:9200
+        - ElasticSearch__MaxRetryTimeout=30
+        - ElasticSearch__RequestTimeout=20
+        - ElasticSearch__DefaultIndex=books
+        - IdentityServer__AuthorityUrl=https://bl.identity
+        - IdentityServer__ApiName=bl.sample
+        - IdentityServer__RequireHttpsMetadata=false
+        - Locale__DefaultCulture=en-US
+        - Locale__ResourcesPath=Resources
+        - Locale__SupportedCultures__0=en-US
+        - Locale__SupportedCultures__1=fa-IR
+    #ports:
+    #    - 800:80
+    #    - 400:443
     volumes:
         - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
         - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -23,6 +76,9 @@ services:
         - redis
         - seq
         - mongo
+    networks:
+      - bl.network
+    restart: always
 
   envoyapigw:
     container_name: envoy
@@ -35,6 +91,9 @@ services:
       - ./Files/Envoy/envoy.yaml:/etc/envoy/envoy.yaml
       - ./Files/Envoy/bonnyland.crt:/etc/ssl/certs/bonnyland.crt
       - ./Files/Envoy/bonnyland.key:/etc/ssl/certs/bonnyland.key
+    networks:
+      - bl.network
+    restart: always
 
   postgres:
     container_name: postgres
@@ -45,6 +104,9 @@ services:
         POSTGRES_PASSWORD: "Infusion@9999"
     volumes:
       - postgres-data:/var/lib/postgres/data
+    networks:
+      - bl.network
+    restart: always
 
   pgadmin:
     container_name: pgadmin
@@ -56,6 +118,9 @@ services:
         - 4003:443
     volumes:
       - pgadmin-data:/var/lib/pgadmin/data
+    networks:
+      - bl.network
+    restart: always
 
   redis:
     container_name: redis
@@ -71,6 +136,9 @@ services:
       - 15672:15672
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq/data
+    networks:
+      - bl.network
+    restart: always
 
   seq:
     container_name: seq
@@ -82,6 +150,9 @@ services:
       - 4002:443
     volumes:
       - seq-data:/var/lib/seq/data
+    networks:
+      - bl.network
+    restart: always
 
   mongo:
     container_name: mongo
@@ -92,6 +163,9 @@ services:
       - 27017:27017
     volumes:
       - mongo-data:/var/lib/mongo/data
+    networks:
+      - bl.network
+    restart: always
 
   elasticsearch:
     container_name: elasticsearch
@@ -103,6 +177,9 @@ services:
       - 9300:9300
     volumes:
       - elasticsearch-data:/var/lib/elasticsearch/data
+    networks:
+      - bl.network
+    restart: always
 
   kibana:
     container_name: kibana
@@ -114,6 +191,9 @@ services:
       - kibana-data:/var/lib/kibana/data
     depends_on:
       - elasticsearch
+    networks:
+      - bl.network
+    restart: always
 
   prometheus:
     container_name: prometheus
@@ -123,11 +203,17 @@ services:
     volumes:
       - ./Files/Prometheus/:/etc/prometheus/
       - ./data/prometheus/:/prometheus/
+    networks:
+      - bl.network
+    restart: always
 
   node-exporter:
     container_name: node-exporter
     ports:
       - 9100:9100 
+    networks:
+      - bl.network
+    restart: always
 
   grafana:
     container_name: grafana
@@ -137,3 +223,6 @@ services:
       - ./data/grafana/:/var/lib/grafana
     depends_on:
       - prometheus
+    networks:
+      - bl.network
+    restart: always

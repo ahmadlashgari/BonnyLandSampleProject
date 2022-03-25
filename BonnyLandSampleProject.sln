@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Sample.Domain", "BL.Sample.Domain\BL.Sample.Domain.csproj", "{77A42B15-212C-47BE-A318-266FC9D59AB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Sample.Domain", "BL.Sample.Domain\BL.Sample.Domain.csproj", "{77A42B15-212C-47BE-A318-266FC9D59AB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Sample.ApplicationServices", "BL.Sample.ApplicationServices\BL.Sample.ApplicationServices.csproj", "{EA8039C6-B7C8-4026-9373-89C8CB94D552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Sample.ApplicationServices", "BL.Sample.ApplicationServices\BL.Sample.ApplicationServices.csproj", "{EA8039C6-B7C8-4026-9373-89C8CB94D552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Sample.Infrastructure", "BL.Sample.Infrastructure\BL.Sample.Infrastructure.csproj", "{FB4EF043-8E11-41BF-B9A7-6181D3DE2462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Sample.Infrastructure", "BL.Sample.Infrastructure\BL.Sample.Infrastructure.csproj", "{FB4EF043-8E11-41BF-B9A7-6181D3DE2462}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Sample", "BL.Sample\BL.Sample.csproj", "{A8032224-67E6-460B-B1E2-F18521DB6973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL.Sample", "BL.Sample\BL.Sample.csproj", "{A8032224-67E6-460B-B1E2-F18521DB6973}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E423D1CE-6444-4EFE-95AC-B9E446E8AED0}"
 EndProject
@@ -26,6 +26,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prometheus", "Prometheus", "{29CCC4A2-3618-46DD-AF3E-77526B33026F}"
 	ProjectSection(SolutionItems) = preProject
 		Files\Prometheus\prometheus.yml = Files\Prometheus\prometheus.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nginx", "Nginx", "{A12BDF27-F7CA-4A25-84E7-48BE16E02231}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Certs", "Certs", "{1E33CB84-D4A9-4AA2-858C-29D826E3239A}"
+	ProjectSection(SolutionItems) = preProject
+		Files\Nginx\Certs\bonnyland.pfx = Files\Nginx\Certs\bonnyland.pfx
 	EndProjectSection
 EndProject
 Global
@@ -61,6 +68,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B3C41D12-E521-400C-BFF9-4743F1B45AF4} = {48BDE48D-8DA4-4585-BA2E-18896967A3CF}
 		{29CCC4A2-3618-46DD-AF3E-77526B33026F} = {48BDE48D-8DA4-4585-BA2E-18896967A3CF}
+		{A12BDF27-F7CA-4A25-84E7-48BE16E02231} = {48BDE48D-8DA4-4585-BA2E-18896967A3CF}
+		{1E33CB84-D4A9-4AA2-858C-29D826E3239A} = {A12BDF27-F7CA-4A25-84E7-48BE16E02231}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D451D7C-8355-4064-95AF-9590CFDBF989}

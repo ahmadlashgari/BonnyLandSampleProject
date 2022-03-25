@@ -6,77 +6,45 @@ services:
     build:
       context: .
       dockerfile: BL.Sample/Dockerfile
-    networks:
-      - bl.network
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
 
   envoyapigw:
     image: envoyproxy/envoy:v1.20-latest
 
   postgres:
     image: postgres:latest
-    networks:
-      - bl.network
-    restart: always
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    networks:
-      - bl.network
-    restart: always
 
   rabbitmq:
     image: rabbitmq:management
-    networks:
-      - bl.network
-    restart: always
 
   redis:
     image: redis:latest
-    networks:
-      - bl.network
-    restart: always
 
   seq:
     image: datalust/seq:latest
-    networks:
-      - bl.network
-    restart: always
 
   mongo:
     image: mongo
-    networks:
-      - bl.network
-    restart: always
 
   elasticsearch:
     image: elasticsearch:8.0.1
-    networks:
-      - bl.network
-    restart: always
 
   kibana:
     image: kibana:8.0.1
-    networks:
-      - bl.network
-    restart: always
 
   prometheus:
     image: prom/prometheus
-    networks:
-      - bl.network
-    restart: always
 
   node-exporter:
     image: prom/node-exporter
-    networks:
-      - bl.network
-    restart: always
 
   grafana:
     image: grafana/grafana
-    networks:
-      - bl.network
-    restart: always
 
 networks:
   bl.network:

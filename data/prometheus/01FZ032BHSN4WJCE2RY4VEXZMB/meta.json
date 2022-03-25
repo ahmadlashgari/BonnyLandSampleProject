@@ -1,0 +1,17 @@
+{
+	"ulid": "01FZ032BHSN4WJCE2RY4VEXZMB",
+	"minTime": 1648060590634,
+	"maxTime": 1648065600000,
+	"stats": {
+		"numSamples": 233113,
+		"numSeries": 471,
+		"numChunks": 1884
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01FZ032BHSN4WJCE2RY4VEXZMB"
+		]
+	},
+	"version": 1
+}
