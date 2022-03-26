@@ -15,10 +15,13 @@ namespace BL.Sample.Infrastructure.Persistence
 
         public BLDbContext(DbContextOptions<BLDbContext> options) : base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         public BLDbContext(DbContextOptions<BLDbContext> options, ILogger<BLDbContext> logger) : base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 

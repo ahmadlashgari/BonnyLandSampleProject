@@ -1,0 +1,17 @@
+{
+	"ulid": "01FZ3BVK46VFVS55NTR9ACZ5Y3",
+	"minTime": 1648296000365,
+	"maxTime": 1648303200000,
+	"stats": {
+		"numSamples": 633034,
+		"numSeries": 471,
+		"numChunks": 5181
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01FZ3BVK46VFVS55NTR9ACZ5Y3"
+		]
+	},
+	"version": 1
+}

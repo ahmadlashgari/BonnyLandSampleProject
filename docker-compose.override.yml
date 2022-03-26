@@ -62,9 +62,9 @@ services:
         - Locale__ResourcesPath=Resources
         - Locale__SupportedCultures__0=en-US
         - Locale__SupportedCultures__1=fa-IR
-    #ports:
-    #    - 800:80
-    #    - 400:443
+    ports:
+        - 800:80
+        - 400:443
     volumes:
         - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
         - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -128,6 +128,9 @@ services:
         - 6379:6379
     volumes:
       - redis-data:/var/lib/redis/data
+    networks:
+      - bl.network
+    restart: always
 
   rabbitmq:
     container_name: rabbitmq
