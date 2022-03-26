@@ -15,9 +15,9 @@ namespace BL.Sample.Infrastructure.Persistence.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
-                    created_on = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    last_updated_on = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    deleted_on = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    last_updated_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    deleted_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     is_deleted = table.Column<bool>(type: "boolean", nullable: false),
                     active = table.Column<bool>(type: "boolean", nullable: false),
                     creator_user_id = table.Column<string>(type: "text", nullable: true),

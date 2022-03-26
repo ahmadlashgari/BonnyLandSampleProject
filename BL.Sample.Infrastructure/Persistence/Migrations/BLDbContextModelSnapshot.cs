@@ -32,7 +32,7 @@ namespace BL.Sample.Infrastructure.Persistence.Migrations
                         .HasColumnName("active");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
                     b.Property<string>("CreatorUserId")
@@ -40,7 +40,7 @@ namespace BL.Sample.Infrastructure.Persistence.Migrations
                         .HasColumnName("creator_user_id");
 
                     b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("deleted_on");
 
                     b.Property<string>("DeletorUserId")
@@ -52,7 +52,7 @@ namespace BL.Sample.Infrastructure.Persistence.Migrations
                         .HasColumnName("is_deleted");
 
                     b.Property<DateTime?>("LastUpdatedOn")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("last_updated_on");
 
                     b.Property<string>("Name")
